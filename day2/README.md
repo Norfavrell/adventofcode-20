@@ -38,4 +38,4 @@ How many passwords are valid according to the new interpretation of the policies
 
 Your puzzle answer was **729**.
 
-Both parts of this puzzle are complete! They provide two gold stars: **
+Both parts of this puzzle are complete! They provide two gold stars: `**`

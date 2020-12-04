@@ -1,5 +1,5 @@
 name:              adventofcode
-version:           1.0
+version:           1.0   
 Build-Type:        Simple
 cabal-version:     >= 1.2
 
@@ -11,11 +11,10 @@ executable day1
 
 executable day2 
   main-is:          day2.hs
-  hs-source-dirs:   day2 
-  build-depends:    base, split, HUnit
+  hs-source-dirs:   day2 ss 
+  build-depends:    base, split
 
-Test-Suite day2-test
-  type:             exitcode-stdio-1.0
-  main-is:          day2-test.hs
-  hs-source-dirs:   day2 
-  build-depends:    base, split, HUnit
+executable day3
+  main-is:          day3.hs  
+  hs-source-dirs:   day3
+  build-depends:    base, split, vector
