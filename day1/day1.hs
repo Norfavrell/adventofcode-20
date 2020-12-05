@@ -6,12 +6,12 @@ findNumbers _ _ []                    = []
 findNumbers 0 _ _                     = []
 findNumbers 1 t (e:rest) | e == t     = [e]
                          | otherwise  = findNumbers 1 t rest
-findNumbers n t (e:rest) | r == []    = findNumbers n t rest 
+findNumbers n t (e:rest) | null r     = findNumbers n t rest
                          | otherwise  = e:r
     where r = findNumbers (n-1) (t-e) rest
 
-solve :: Int -> Int -> String -> String 
-solve n t = (show . (foldr (*) 1) . (findNumbers n t) . (map read) . lines) 
+solve :: Int -> Int -> String -> String
+solve n t = show . product . findNumbers n t . map read . lines
 
 main = do
     a <- getArgs

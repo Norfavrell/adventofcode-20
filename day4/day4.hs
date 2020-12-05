@@ -25,14 +25,15 @@ data Passport = Passport {
 } deriving (Show)
 
 passport :: Parser Passport
-passport = permute (Passport <$$> f "byr" year
-                             <||> f "iyr" year
-                             <||> f "eyr" year
-                             <||> f "hgt" len
-                             <||> f "hcl" color
-                             <||> f "ecl" color
-                             <||> f "pid" (many1 (noneOf "\n "))
-                             <|?> f' "cid" ident)
+passport = permute (
+    Passport <$$> f "byr" year
+             <||> f "iyr" year
+             <||> f "eyr" year
+             <||> f "hgt" len
+             <||> f "hcl" color
+             <||> f "ecl" color
+             <||> f "pid" (many1 (noneOf "\n "))
+             <|?> f' "cid" ident)
     where f s p  = try (string $ s++":") >> p <* sep
           f' s p = (Nothing, Just <$> f s p)
           year   = read <$> many1 digit
@@ -72,14 +73,15 @@ pidParser :: Parser Int
 pidParser = read <$> count 9 digit
 
 passportStrict :: Parser Passport
-passportStrict = permute (Passport <$$> f "byr" (year 1920 2002)
-                                   <||> f "iyr" (year 2010 2020)
-                                   <||> f "eyr" (year 2020 2030)
-                                   <||> f "hgt" heightPars
-                                   <||> f "hcl" hairColorParser
-                                   <||> f "ecl" eyeColorParser
-                                   <||> f "pid" (show <$> pidParser)
-                                   <|?> f' "cid" ident)
+passportStrict = permute (
+    Passport <$$> f "byr" (year 1920 2002)
+             <||> f "iyr" (year 2010 2020)
+             <||> f "eyr" (year 2020 2030)
+             <||> f "hgt" heightPars
+             <||> f "hcl" hairColorParser
+             <||> f "ecl" eyeColorParser
+             <||> f "pid" (show <$> pidParser)
+             <|?> f' "cid" ident)
     where f s p  = try (string $ s++":") >> p <* sep
           f' s p = (Nothing, Just <$> f s p)
           ident  = read <$> many1 digit

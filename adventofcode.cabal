@@ -23,3 +23,9 @@ executable day4
   main-is:          day4.hs  
   hs-source-dirs:   day4
   build-depends:    base, split, parsec
+
+executable day5
+  main-is:          day5.hs  
+  hs-source-dirs:   day5
+  build-depends:    base, split, sort
+
