@@ -16,7 +16,7 @@ ecl (Eye Color)
 pid (Passport ID)
 cid (Country ID)
 ```
-Passport data is validated in batch files (your puzzle input). Each passport is represented as a sequence of key:value pairs separated by spaces or newlines. Passports are separated by blank lines.
+Passport data is validated in batch files (your puzzle input). Each passport is represented as a sequence of `key:value` pairs separated by spaces or newlines. Passports are separated by blank lines.
 
 Here is an example batch file containing four passports:
 ```
@@ -116,4 +116,4 @@ Count the number of valid passports - those that have all required fields and va
 
 Your puzzle answer was `103`.
 
-Both parts of this puzzle are complete! They provide two gold stars: `**`
+Both parts of this puzzle are complete! They provide two gold stars: **\*\***

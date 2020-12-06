@@ -1,4 +1,4 @@
-import System.Environment
+import System.Environment ( getArgs )
 
 -- |For a given (number of entries, target, values) return list of target numbers
 findNumbers :: (Ord a, Num a) => a -> a -> [a] -> [a]

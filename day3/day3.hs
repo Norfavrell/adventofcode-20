@@ -1,4 +1,5 @@
 import qualified Data.Vector as V
+import System.Environment ( getArgs )
 
 data Cell = Empty | Tree deriving (Show, Eq)
 type Move = (Int, Int)
@@ -31,9 +32,10 @@ walk g@(hei, wid) p@(x, y) m@(dx, dy) | ny >= hei  = []
           np = (nx, ny)
 
 main = do
-    inputData <- readFile "day3/data/input.in"
+    args <- getArgs
+    inputData <- readFile $ head args
     let inputMap = parseMap inputData
 
     let validMoves = [(1,1), (3,1), (5,1), (7,1), (1,2)] :: [(Int, Int)]
     let sol = solveMany inputMap validMoves
-    print(sol)
+    print sol

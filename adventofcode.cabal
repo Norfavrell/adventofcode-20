@@ -7,17 +7,17 @@ cabal-version:     >= 1.2
 executable day1
   main-is:         day1.hs
   hs-source-dirs:  day1
-  build-depends:   base, split
+  build-depends:   base
 
 executable day2 
   main-is:          day2.hs
   hs-source-dirs:   day2 ss 
-  build-depends:    base, split
+  build-depends:    base
 
 executable day3
   main-is:          day3.hs  
   hs-source-dirs:   day3
-  build-depends:    base, split, vector
+  build-depends:    base, vector 
 
 executable day4
   main-is:          day4.hs  
@@ -27,7 +27,7 @@ executable day4
 executable day5
   main-is:          day5.hs  
   hs-source-dirs:   day5
-  build-depends:    base, split, sort
+  build-depends:    base, sort
 
 executable day6
   main-is:          day6.hs  

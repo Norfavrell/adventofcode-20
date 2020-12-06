@@ -2,10 +2,11 @@
 import Text.ParserCombinators.Parsec
 import Text.Parsec.Perm
 import Data.List.Split
-import Data.Either 
+import Data.Either
 import Text.Printf
+import System.Environment
 
--- TODO convert all of this to an applicative form 
+-- |TODO This is a complete mess, come back and refactor this at some point. Use Applicative form....
 
 type Year = Int
 type Color = String
@@ -44,17 +45,17 @@ passport = permute (
 
 
 year :: Int -> Int -> Parser Year
-year min max = do 
+year min max = do
     val <- count 4 digit
     let ival = read val :: Int
-    if ival < min || ival > max 
+    if ival < min || ival > max
         then fail (printf "Year '%d' should be between %d and %d" ival min max)
         else return ival
 
 heightPars :: Parser Height
 heightPars = do
     h@(v,u) <- (,) <$> (read <$> many1 digit) <*> (string "cm" <|> string "in")
-    case u of 
+    case u of
         "cm" -> if v < 150 || v > 193 then fail (printf "Height '%s' should be between %dcm and %dcm" (show h) (150::Int) (193::Int)) else return h
         "in" -> if v < 59 || v > 76 then fail (printf "Height '%s' should be between %din and %din" (show h) (59::Int) (76::Int)) else return h
         _    -> fail (printf "Unknown unit %s in height %s" u (show h))
@@ -62,10 +63,10 @@ heightPars = do
 hairColorParser :: Parser HairColor
 hairColorParser = (++) <$> string "#" <*> count 6 hexDigit
 
-eyeColorParser :: Parser EyeColor 
+eyeColorParser :: Parser EyeColor
 eyeColorParser = do
     val <- many1 letter
-    if elem val ["amb","blu","brn","gry","grn","hzl","oth"]
+    if val `elem` ["amb","blu","brn","gry","grn","hzl","oth"]
         then return val
         else fail (printf "Invalid eye color '%s'" (show val))
 
@@ -92,10 +93,11 @@ parsePassports :: Parser Passport -> String -> [Either ParseError Passport]
 parsePassports p = map (\x -> parse p x x) . splitOn "\n\n"
 
 main = do
-    inData <- readFile "day4/data/input.in"
+    args <- getArgs
+    inData <- readFile $ head args
 
     let solution1 = length $ filter isRight $ parsePassports passport inData
     let solution2 = length $ filter isRight $ parsePassports passportStrict inData
 
-    print(solution1)
-    print(solution2)
+    print solution1
+    print solution2

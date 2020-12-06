@@ -1,7 +1,7 @@
-import Data.List.Split
-import Debug.Trace
-import Text.Printf
 import Data.Sort
+import System.Environment
+
+-- |TODO Clean this up
 
 data Step = F | B | L | R deriving (Show, Eq)
 
@@ -14,7 +14,7 @@ parsePass = splitAt 7 . map f
 
 biSearch :: (Int, Int) -> [Step] -> (Int, Int)
 biSearch (l,h) [] = (l,h)
-biSearch (l,h) (s:rest) =  biSearch (nl, nh) rest --trace (printf "bisearch %s (%d, %d) -[%f]-> (%d, %d) " (show s) l h mid nl nh)
+biSearch (l,h) (s:rest) =  biSearch (nl, nh) rest
     where isLo x = x `elem` [F,L]
           mid = fromIntegral (l+h)/2 :: Float
           nl = if isLo s then l else ceiling mid
@@ -30,10 +30,11 @@ findMissing (a:b:rest) | a + 2 == b = a + 1
                        | otherwise  = findMissing(b:rest)
 
 main = do
-    x <- readFile "day5/data/input.in"
+    args <- getArgs
+    x <- readFile $ head args
     let passes = map parsePass $ lines x
     let ids = map passID passes 
     let missing = findMissing $ sort ids
 
-    print(maximum ids)
-    print(missing)
+    print $ maximum ids
+    print missing
