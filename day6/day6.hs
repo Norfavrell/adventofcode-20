@@ -6,6 +6,7 @@ parseInput = map (splitOn "\n") . splitOn "\n\n"
 
 solve f = sum . map (length . nub . f)
 solve1 = solve concat
+solve2 :: [[[Char]]] -> Int
 solve2 = solve $ foldr intersect ['a'..'z']
 
 main = getArgs >>= (readFile . head) >>= 

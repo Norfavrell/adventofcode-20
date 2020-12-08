@@ -3,7 +3,6 @@ version:           1.0   
 Build-Type:        Simple
 cabal-version:     >= 1.2
 
---| TODO remove unnecesary deps
 executable day1
   main-is:         day1.hs
   hs-source-dirs:  day1
@@ -34,3 +33,7 @@ executable day6
   hs-source-dirs:   day6
   build-depends:    base, split
 
+executable day7
+  main-is:          day7.hs  
+  hs-source-dirs:   day7
+  build-depends:    base, split, parsec, hashmap, containers 
