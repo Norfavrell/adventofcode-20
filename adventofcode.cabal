@@ -42,3 +42,8 @@ executable day8
   main-is:          day8.hs  
   hs-source-dirs:   day8
   build-depends:    base, split, parsec, vector
+
+executable day9
+  main-is:          day9.hs  
+  hs-source-dirs:   day9
+  build-depends:    base, split
